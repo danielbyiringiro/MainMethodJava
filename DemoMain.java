@@ -1,19 +1,36 @@
 public class DemoMain {
     public static void main(String[] args){
         if (args[0].equals("add")){
-            int sum = Integer.parseInt(args[1]) + Integer.parseInt(args[2]);
-            System.out.println(sum);
+            int sum = 0;
+            for (int i = 1; i < args.length; i++){
+                sum += Integer.parseInt(args[i]);
+            }
+            System.out.println(sum);        
         }else if (args[0].equals("subtract")){
-            int difference = Integer.parseInt(args[1]) - Integer.parseInt(args[2]);
-            System.out.println(difference);
+            int subtract = Integer.parseInt(args[1]);
+            for (int i = 1; i < args.length-1; i++){
+                subtract -= Integer.parseInt(args[i+1]);
+            }
+            System.out.println(subtract);
         }else if (args[0].equals("multiply")){
-            int product = Integer.parseInt(args[1]) * Integer.parseInt(args[2]);
+            int product = 1;
+            for (int i = 1; i < args.length; i++){
+                product *= Integer.parseInt(args[i]);
+            }
             System.out.println(product);
         }else if (args[0].equals("divide")){
-            int quotient = Integer.parseInt(args[1]) / Integer.parseInt(args[2]);
+            int quotient = Integer.parseInt(args[1]);
+            for (int i = 1; i < args.length-1; i++){
+                quotient /= Integer.parseInt(args[i+1]);
+            }
             System.out.println(quotient);
-        }else{
-            System.out.println("Not enough arguments provided.");
+        }else {
+            try{
+                Integer.parseInt(args[0]);
+                System.out.println("You have to specify the operator");
+            }catch(NumberFormatException e){
+                System.out.println("Operator not supported");
+            }
         }
 }
 }
